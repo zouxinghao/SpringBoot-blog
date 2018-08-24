@@ -25,7 +25,7 @@ public interface IUserService {
 	 * @param password
 	 * @return
 	 */
-	UserVo login(Integer username, Integer password);
+	UserVo login(String username, String password);
 	
 	/**
 	 * update user info by primary key

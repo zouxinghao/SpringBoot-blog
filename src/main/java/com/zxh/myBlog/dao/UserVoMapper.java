@@ -11,7 +11,7 @@ import com.zxh.myBlog.model.Vo.UserVoExample;
 @Component
 public interface UserVoMapper {
 	
-	long countByExample(UserVoExample exampple);
+	long countByExample(UserVoExample example);
 	
 	long deleteByExample(UserVoExample example);
 	
