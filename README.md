@@ -16,8 +16,11 @@ __Design and create database with mySQL, add docker support__
    reference: https://github.com/zouxinghao/SpringBoot-blog/blob/master/docker-support/mysql/password.sql
 ## 08/24/2018
 __1.Add User function, including create/modify users, log fuction__
+
 __2.Add Mapping(XML) / service / controller (RESTful) for User/admin function__
-__3.Minor funtion: cache / Exception / message bar __
+
+__3.Minor funtion: cache / Exception / message bar__
+
 **Note**
 1. SLF4J vs Log4J:
 SLF4J allows to use any independent specific log lib, besides that, SLF4J has better string mechanism like 
