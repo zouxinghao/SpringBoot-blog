@@ -3,9 +3,12 @@ package com.zxh.myBlog.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import com.zxh.myBlog.model.Vo.UserVo;
+import com.zxh.myBlog.utils.MapCache;
 
 public abstract class BaseController {
 	public static String THEME = "themes/default";
+	
+	protected MapCache cache = MapCache.single();
 	
 	/**
 	 * Direct the theme for the main page
@@ -29,6 +32,10 @@ public abstract class BaseController {
 	public UserVo user(HttpServletRequest request) {
 		return this.user(request);
 	}
+	
+	 public Integer getUid(HttpServletRequest request){
+	        return this.user(request).getUid();
+	    }
 	
 	public String render_404() {
 		return "comm/error_404";
