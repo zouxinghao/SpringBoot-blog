@@ -3,6 +3,7 @@ package com.zxh.myBlog.controller.admin;
 import java.io.IOException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,6 +25,7 @@ import com.zxh.myBlog.exception.TipException;
 import com.zxh.myBlog.model.Bo.RestResponseBo;
 import com.zxh.myBlog.model.Vo.UserVo;
 import com.zxh.myBlog.service.IUserService;
+import com.zxh.myBlog.utils.TaleUtils;
 
 @Controller
 @RequestMapping("/admin")
@@ -62,6 +64,7 @@ public class AuthController extends BaseController{
 			request.getSession().setAttribute(WebConst.LOGIN_SESSION_KEY, user);
 			if(StringUtils.isNotBlank(remeber_me)) {
 				//pending cookie function
+				TaleUtils.setCookie(response, user.getUid());
 			}
 			
 		}catch (Exception e) {
@@ -81,15 +84,25 @@ public class AuthController extends BaseController{
 		return RestResponseBo.ok();
 	}
 	
+	/**
+	 * 
+	 * @param httpsession
+	 * @param response
+	 * @param quest
+	 */
 	@RequestMapping("/logout")
 	public void logout(HttpSession httpsession, HttpServletResponse response, HttpServletRequest quest) {
 		httpsession.removeAttribute(WebConst.LOGIN_SESSION_KEY);
-		
+		Cookie cookie = new Cookie(WebConst.USER_IN_COOKIE, "");
+		cookie.setValue(null);
+		cookie.setMaxAge(0); // destory immediately
+		cookie.setPath("/");
+		response.addCookie(cookie);
 		try {
 			response.sendRedirect("/admin/login");
 		} catch (IOException e) {
 			e.printStackTrace();
-			LOGGER.error("Logout fail");
+			LOGGER.error("Logout fail", e);
 		}
 	}
 	
