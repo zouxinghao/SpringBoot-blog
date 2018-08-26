@@ -23,7 +23,7 @@
         <junit.platform.version>1.0.2</junit.platform.version>
 		<junit.jupiter.version>5.0.2</junit.jupiter.version>
 		<junit.vintage.version>4.12.2</junit.vintage.version>
-		<logback.version>1.2.3</logback.version>
+		
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -103,6 +103,16 @@
             </exclusions>
         </dependency>
     
+    	<dependency>
+  		<groupId>org.springframework.boot</groupId>
+  		<artifactId>spring-boot-starter-web</artifactId>
+  		<exclusions>
+    		<exclusion>
+      			<groupId>org.springframework.boot</groupId>
+      				<artifactId>spring-boot-starter-logging</artifactId>
+    		</exclusion>
+  		</exclusions>
+		</dependency>
     <!-- Start: log4j2 -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -133,31 +143,7 @@
         </dependency>
         <!-- End: log4j2 -->
 		
-		<!--  start: JUnit -->
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>${junit.jupiter.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-runner</artifactId>
-			<version>${junit.platform.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
-    	<dependency>
-      		<groupId>org.junit.platform</groupId>
-      		<artifactId>junit-platform-console-standalone</artifactId>
-      		<version>${junit.platform.version}</version>
-      		<scope>test</scope>
-   	 	</dependency>
-		<!--  End: JUnit -->
+		
 		
 		<dependency>
             <groupId>org.springframework.boot</groupId>
@@ -178,12 +164,25 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+		
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.5</version>
+        </dependency>
+	
+		<!--mybatis分页插件-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.18</version>
         </dependency>
 	
     <dependency>
