@@ -38,4 +38,4 @@ __3. Debug for docker function__
 
 **Note**
 1. ➖ remove JUnit to solve confliection (see development log): JUnit will use logback, while SLF4J will also use it, which cause the confliection, see [reference](https://github.com/spring-projects/spring-boot/issues/4341). I will revert it back once I figure out how to solve the confliction. 
-
+2. AES/MD5 with salt
