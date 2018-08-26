@@ -14,6 +14,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.alibaba.druid.pool.DruidDataSource;
+
 /**
  * Hello world!
  *
@@ -29,23 +31,23 @@ public class captitalApplication
     public DataSource dataSource() {
         return new DruidDataSource();
     }
-	
-	@Bean
-	public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
-		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource(dataSource());
-		sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath*:/mapper/*Mapper.xml"));
-		return sqlSessionFactoryBean.getObject();
-	}
-	
-	@Bean
-	public PlatformTransactionManager transactionManager() {
-		return new DataSourceTransactionManager(dataSource());
-	}
-	
-    public static void main( String[] args )
-    {
+
+    @Bean
+    public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource());
+        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath*:/mapper/*Mapper.xml"));
+        return sqlSessionFactoryBean.getObject();
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        return new DataSourceTransactionManager(dataSource());
+    }
+
+
+    public static void main(String[] args) {
         SpringApplication.run(captitalApplication.class, args);
     }
 }

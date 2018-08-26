@@ -3,6 +3,7 @@ package com.zxh.myBlog.service.impl;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zxh.myBlog.dao.UserVoMapper;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+@Service
 public class UserServiceImpl implements IUserService{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);

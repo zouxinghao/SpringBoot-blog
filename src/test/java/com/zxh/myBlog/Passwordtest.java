@@ -25,5 +25,6 @@ public class Passwordtest{
 		user.setUsername("admin");
 		user.setPassword("J9lew2irojE23");
 		String encodePwd = TaleUtils.MD5encode(user.getUsername() + user.getPassword());
+		//assertEquals()
 	}
 }
