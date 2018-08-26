@@ -5,6 +5,7 @@ A blogging system developed by springboot / mybatis / thymeleaf
 # TODO 
 - [ ] Currently, I used map for cache, and set size of 800, it is unsafe. Replacing it by redis may help.
 - [ ] Currently, I used cookie. The other method like OAuth may be more funtional.
+- [ ] slove the confliction of logback
 
 # Development log
 ## 08/23/2018
@@ -27,4 +28,14 @@ SLF4J allows to use any independent specific log lib, besides that, SLF4J has be
 ```java
 logger.debug("Processing trade with id: {} and symbol : {} ", id, symbol);
 ```
+
+## 08/26/2018
+__1. Add Unit Test (with JUnit)__
+
+__2. Add front end code (htnl/css/js) (through thymleaf with templates)__
+
+__3. Debug for docker function__
+
+**Note**
+1. ➖ remove JUnit to solve confliection (see development log): JUnit will use logback, while SLF4J will also use it, which cause the confliection, see [reference](https://github.com/spring-projects/spring-boot/issues/4341). I will revert it back once I figure out how to solve the confliction. 
 
