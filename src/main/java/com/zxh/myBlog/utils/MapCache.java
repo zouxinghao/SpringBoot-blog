@@ -78,6 +78,17 @@ public class MapCache {
     	return null;
     }
     
+    /**
+     * get hash type cache
+     * @param key
+     * @param field
+     * @return
+     */
+    public <T> T hget(String key, String field) {
+    	key = key + ":" + field;
+    	return this.get(key);
+    }
+    
     public void set(String key, Object value) {
     	this.set(key, value, -1);
     }
@@ -91,5 +102,29 @@ public class MapCache {
     	
     	CacheObject cacheobject = new CacheObject(key, value, expired);
     	cachePool.put(key, cacheobject);
+    }
+    
+    public void hset(String key, String field, Object value) {
+    	this.hset(key, field, value, -1);
+    }
+    
+    public void hset(String key, String field, Object value, long expired) {
+    	key = key + ":" + field;
+    	 expired = expired > 0 ? System.currentTimeMillis() / 1000 + expired : expired;
+    	 CacheObject cacheObject = new CacheObject(key, value, expired);
+    	 cachePool.put(key, cacheObject);
+    }
+    
+    public void del(String key) {
+    	cachePool.remove(key);
+    }
+    
+    public void hdel(String key, String filed) {
+    	key = key + ":" + filed;
+    	cachePool.remove(key);
+    }
+    
+    public void clean() {
+    	cachePool.clear();
     }
 }
