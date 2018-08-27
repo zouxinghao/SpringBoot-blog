@@ -1,5 +1,8 @@
 package com.zxh.myBlog.constant;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +14,8 @@ import org.springframework.stereotype.Component;
 public class WebConst {
 	public static String LOGIN_SESSION_KEY = "login_user";
 
+	
+	public static Map<String, String> initConfig = new HashMap<String, String>();
 	/**
      * aes encode with salt
      */

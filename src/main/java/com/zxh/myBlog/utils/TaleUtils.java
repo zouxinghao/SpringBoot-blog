@@ -4,13 +4,16 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.zxh.myBlog.constant.WebConst;
+import com.zxh.myBlog.model.Vo.UserVo;
 
 /**
  * 
@@ -60,5 +63,47 @@ public class TaleUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	/**
+	 * get User information
+	 * @param request
+	 * @return
+	 */
+	public static UserVo getLoginUser(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session == null)
+			return null;
+		return (UserVo)session.getAttribute(WebConst.LOGIN_SESSION_KEY);
+	}
+	
+	public static Integer getCookieUid(HttpServletRequest request) {
+		if(request != null) {
+			Cookie cookie = cookieRaw(WebConst.USER_IN_COOKIE, request);
+			if(cookie != null && cookie.getValue()!=null) {
+				try {
+					String uid = Tools.deAes(cookie.getValue(), WebConst.AES_SALT);
+					return StringUtils.isBlank(uid) && Tools.isNumber(uid) ? Integer.valueOf(uid):null;
+				} catch (Exception e){
+					
+				}
+			}
+		}
+		return null;
+	}
+	/**
+	 * Extract cookie from cookies
+	 * @return
+	 */
+	public static Cookie cookieRaw(String name, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		javax.servlet.http.Cookie[] servletCookies = request.getCookies();
+		if(servletCookies == null) 
+			return null;
+		for(javax.servlet.http.Cookie c:servletCookies) {
+			if(c.getName().equals(name)) {
+				return c;
+			}
+		}
+		return null;
 	}
 }

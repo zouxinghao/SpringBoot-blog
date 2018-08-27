@@ -34,4 +34,14 @@ public class Tools {
         byte[] decValue = cipher.doFinal(cipherTextBytes);
         return new String(decValue);
     }
+    /**
+     * check wether string is number
+     * @param str
+     * @return
+     */
+    public static boolean isNumber(String str) {
+    	if(str != null && str.trim().length() != 0 && str.matches("\\d*"))
+    		return true;
+    	return false;
+    }
 }

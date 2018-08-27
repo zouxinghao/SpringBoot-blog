@@ -10,8 +10,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zxh.myBlog.constant.WebConst;
+import com.zxh.myBlog.model.Vo.UserVo;
 import com.zxh.myBlog.service.IUserService;
+import com.zxh.myBlog.utils.AdminCommons;
+import com.zxh.myBlog.utils.Commons;
+import com.zxh.myBlog.utils.IPKit;
 import com.zxh.myBlog.utils.MapCache;
+import com.zxh.myBlog.utils.TaleUtils;
 
 @Component
 public class BaseInterceptor implements HandlerInterceptor {
@@ -46,11 +52,23 @@ public class BaseInterceptor implements HandlerInterceptor {
 
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
 		// TODO Auto-generated method stub
-		String context = request.getContextPath();
+		String contextPath = request.getContextPath();
 		String Uri = request.getRequestURI();
 		
 		LOGGER.info("UserAgent: {}", request.getHeader(USER_AGENT));
 		LOGGER.info("User's visit IP address: {}, IP address: {}", Uri, IPKit.getIpAddrByRequest(request));
-		return false;
+		
+		UserVo user = TaleUtils.getLoginUser(request);
+		if(user == null) {
+			Integer uid = TaleUtils.getCookieUid(request);
+			if(uid != null) {
+				user = userService.queryById(uid);
+				request.getSession().setAttribute(WebConst.LOGIN_SESSION_KEY, user);
+			}
+			if(Uri.startsWith(contextPath+"/admin") && !Uri.startsWith(contextPath+"/admin/login") && user==null){
+				response.sendRedirect(request.getContextPath() + "/admin/login");
+				return false;
+			} 
+		}
 	}
 }
