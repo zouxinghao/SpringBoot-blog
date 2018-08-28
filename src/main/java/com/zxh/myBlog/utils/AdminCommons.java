@@ -1,5 +1,6 @@
 package com.zxh.myBlog.utils;
 
+import org.springframework.stereotype.Component;
 
 /**
  * Common function for back end 
@@ -7,8 +8,9 @@ package com.zxh.myBlog.utils;
  * @author xzou
  *
  */
+@Component
 public class AdminCommons {
 	
 	
-	public static boolean exist_cat();
+	
 }
