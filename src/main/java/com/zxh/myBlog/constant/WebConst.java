@@ -25,4 +25,10 @@ public class WebConst {
 
 	public static final int MAX_POSTS = 10;
 
+
+	public static final int MAX_TITLE_COUNT = 100;
+
+
+	public static final int MAX_TEXT_COUNT = 1000000000;
+
 }
