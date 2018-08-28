@@ -11,7 +11,7 @@
     <result column="parent" jdbcType="INTEGER" property="parent" />
   </resultMap>
 
-  <resultMap id="MetaDto" type="com.zxh.myBlog.MetaDto" extends="BaseResultMap">
+  <resultMap id="MetaDto" type="com.zxh.myBlog.dto.MetaDto" extends="BaseResultMap">
     <result column="count" property="count" jdbcType="INTEGER"/>
   </resultMap>
 
