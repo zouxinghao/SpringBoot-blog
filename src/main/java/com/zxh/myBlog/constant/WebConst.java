@@ -26,9 +26,12 @@ public class WebConst {
 	public static final int MAX_POSTS = 10;
 
 
-	public static final int MAX_TITLE_COUNT = 100;
+	public static final int MAX_TITLE_COUNT = 200;
 
 
-	public static final int MAX_TEXT_COUNT = 1000000000;
+	public static final int MAX_TEXT_COUNT = 200000;
+
+
+	public static final String SUCCESSFUL_RESULT = "SUCCESS";
 
 }

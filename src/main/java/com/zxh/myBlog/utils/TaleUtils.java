@@ -30,6 +30,8 @@ public class TaleUtils {
 	
 	// Regular match for path
 	private static final Pattern SLUG_REGEX = Pattern.compile("^[A-Za-z0-9_-]{5,100}$", Pattern.CASE_INSENSITIVE);
+	private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 	/**
 	 * MD5 to encode
 	 * @param source
@@ -122,5 +124,11 @@ public class TaleUtils {
 			return matcher.find();
 		}
 		return false;
+	}
+
+	public static boolean isEmail(String mail) {
+		// TODO Auto-generated method stub
+		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(mail);
+		return matcher.find();
 	}
 }
