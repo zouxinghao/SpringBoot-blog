@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zxh.myBlog.constant.WebConst;
 import com.zxh.myBlog.controller.BaseController;
+import com.zxh.myBlog.dto.LogActions;
 import com.zxh.myBlog.exception.TipException;
 import com.zxh.myBlog.model.Bo.RestResponseBo;
 import com.zxh.myBlog.model.Vo.UserVo;
+import com.zxh.myBlog.service.ILogService;
 import com.zxh.myBlog.service.IUserService;
 import com.zxh.myBlog.utils.TaleUtils;
 
@@ -36,6 +38,9 @@ public class AuthController extends BaseController{
 	
 	@Resource
 	private IUserService usersService;
+	
+	@Resource
+	private ILogService logService;
 	
 	@GetMapping(value = "/login")
 	public String login() {
@@ -66,7 +71,7 @@ public class AuthController extends BaseController{
 				//pending cookie function
 				TaleUtils.setCookie(response, user.getUid());
 			}
-			
+			logService.insertLog(LogActions.LOGIN.getAction(), null, request.getRemoteAddr(), user.getUid());
 		}catch (Exception e) {
 			error_count = error_count==null?1:error_count+1;
 			if(error_count>3) {

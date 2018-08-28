@@ -67,7 +67,7 @@ public class BaseInterceptor implements HandlerInterceptor {
 		String uri = request.getRequestURI();
 		
 		LOGGER.info("UserAgent: {}", request.getHeader(USER_AGENT));
-		LOGGER.info("User's visit IP address: {}, IP address: {}", Uri, IPKit.getIpAddrByRequest(request));
+		LOGGER.info("User's visit IP address: {}, IP address: {}", uri, IPKit.getIpAddrByRequest(request));
 		
 		// If cookie exist, hold on the request
 		UserVo user = TaleUtils.getLoginUser(request);

@@ -22,4 +22,7 @@ public class WebConst {
     public static String AES_SALT = "0123456789abcdef";
     public static final String USER_IN_COOKIE = "S_L_ID";
 
+
+	public static final int MAX_POSTS = 10;
+
 }
