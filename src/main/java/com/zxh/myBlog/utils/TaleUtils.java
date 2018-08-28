@@ -2,6 +2,8 @@ package com.zxh.myBlog.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +27,9 @@ import com.zxh.myBlog.model.Vo.UserVo;
 public class TaleUtils {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TaleUtils.class);
 	
+	
+	// Regular match for path
+	private static final Pattern SLUG_REGEX = Pattern.compile("^[A-Za-z0-9_-]{5,100}$", Pattern.CASE_INSENSITIVE);
 	/**
 	 * MD5 to encode
 	 * @param source
@@ -105,5 +110,17 @@ public class TaleUtils {
 			}
 		}
 		return null;
+	}
+
+	public static boolean isPath(String slug) {
+		// TODO Auto-generated method stub
+		if(StringUtils.isNotBlank(slug)) {
+			if(slug.contains("/") || slug.contains(" ") || slug.contains(".")) {
+				return false;
+			}
+			Matcher matcher = SLUG_REGEX.matcher(slug);
+			return matcher.find();
+		}
+		return false;
 	}
 }

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.pagehelper.PageInfo;
+import com.vdurmont.emoji.EmojiParser;
 import com.zxh.myBlog.constant.WebConst;
 import com.zxh.myBlog.dao.ContentVoMapper;
 import com.zxh.myBlog.dao.MetaVoMapper;
@@ -14,6 +15,7 @@ import com.zxh.myBlog.model.Vo.ContentVo;
 import com.zxh.myBlog.model.Vo.ContentVoExample;
 import com.zxh.myBlog.service.IContentService;
 import com.zxh.myBlog.service.IMetaService;
+import com.zxh.myBlog.utils.TaleUtils;
 
 public class ContentServiceImpl implements IContentService {
 
@@ -50,6 +52,20 @@ public class ContentServiceImpl implements IContentService {
 		if(contentVo.getAuthorId()==null) {
 			return "Please Log in";
 		}
+		if(StringUtils.isNotBlank(contentVo.getSlug())) {
+			if(contentVo.getSlug().length()<5) {
+				return "The path is too short";
+			}
+			if(!TaleUtils.isPath(contentVo.getSlug())) return "The path you input is illegal!";
+			ContentVoExample contentVoExample = new ContentVoExample();
+            contentVoExample.createCriteria().andTypeEqualTo(contentVo.getType()).andStatusEqualTo(contentVo.getSlug());
+            long count = contentDao.countByExample(contentVoExample);
+            if (count > 0) return "该路径已经存在，请重新输入";
+        } else {
+        	contentVo.setSlug(null);
+        }
+		
+		contentVo.setContent(EmojiParser.parseToAliases(contentVo.getContent()));
 	}
 
 	@Override
