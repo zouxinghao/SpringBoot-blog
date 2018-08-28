@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
+import com.zxh.myBlog.model.Bo.ArchiveBo;
 import com.zxh.myBlog.model.Vo.ContentVo;
 import com.zxh.myBlog.model.Vo.ContentVoExample;
 
