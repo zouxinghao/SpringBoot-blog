@@ -1,10 +1,16 @@
 package com.zxh.myBlog.utils;
 
+import java.awt.Image;
+import java.io.File;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.zxh.myBlog.constant.WebConst;
+import com.zxh.myBlog.controller.admin.AttachController;
 import com.zxh.myBlog.model.Vo.UserVo;
 
 /**
@@ -131,4 +138,63 @@ public class TaleUtils {
 		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(mail);
 		return matcher.find();
 	}
+	
+	/**
+	 * get the directory where to save the files, where does jar located
+	 * @return
+	 */
+	public static String getUploadFilePath() {
+		// TODO Auto-generated method stub
+		String Path = TaleUtils.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+		Path = Path.substring(1, Path.length());
+		try {
+			Path = java.net.URLDecoder.decode(Path, "utf-8");
+			
+		} catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+		
+		int lastIndex = Path.lastIndexOf("/") + 1;
+		Path  = Path.substring(0, lastIndex);
+		File file = new File("");
+		
+		return file.getAbsolutePath()+"/";
+	}
+
+	public static boolean isImage(InputStream inputStream) {
+		// TODO Auto-generated method stub
+		try {
+			Image img = ImageIO.read(inputStream);
+			if(img == null || img.getWidth(null) == 0 || img.getHeight(null) == 0) {
+				return false;
+			}
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
+	}
+
+	public static String getFileKey(String fname) {
+		// TODO Auto-generated method stub
+		String prefix = "/upload" + DateKit.dateFormat(new Date(), "yyyy/MM");
+		if(!new File(AttachController.CLASSPATH + prefix).exists()) {
+			new File(AttachController.CLASSPATH + prefix).mkdirs();
+		}
+		
+		fname = StringUtils.trimToNull(fname);
+		if(fname == null) {
+			return prefix + "/" + UUID.UU32() + "." + null;
+		} else {
+			fname = fname.replaceAll("\\", "/");
+			fname = fname.substring(fname.lastIndexOf("/") + 1);
+			int index = fname.lastIndexOf(".");
+			String ext = null;
+			if(index >= 0) {
+				ext = StringUtils.trimToNull(fname.substring(index+1));
+			}
+			return prefix + "/" + UUID.UU32() + "." + (ext == null ? null : (ext));
+		}
+	}
+	
+	
 }

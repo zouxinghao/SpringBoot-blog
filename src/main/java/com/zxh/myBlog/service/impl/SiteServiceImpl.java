@@ -1,20 +1,25 @@
 package com.zxh.myBlog.service.impl;
 
+import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
+import com.zxh.myBlog.controller.admin.AttachController;
 import com.zxh.myBlog.dao.AttachVoMapper;
 import com.zxh.myBlog.dao.CommentVoMapper;
 import com.zxh.myBlog.dao.ContentVoMapper;
 import com.zxh.myBlog.dao.MetaVoMapper;
 import com.zxh.myBlog.dto.MetaDto;
 import com.zxh.myBlog.dto.Types;
+import com.zxh.myBlog.exception.TipException;
 import com.zxh.myBlog.model.Bo.ArchiveBo;
 import com.zxh.myBlog.model.Bo.BackResponseBo;
 import com.zxh.myBlog.model.Bo.StatisticsBo;
@@ -23,6 +28,9 @@ import com.zxh.myBlog.model.Vo.CommentVoExample;
 import com.zxh.myBlog.model.Vo.ContentVo;
 import com.zxh.myBlog.model.Vo.ContentVoExample;
 import com.zxh.myBlog.service.ISiteService;
+import com.zxh.myBlog.utils.DateKit;
+import com.zxh.myBlog.utils.TaleUtils;
+import com.zxh.myBlog.utils.ZipUtils;
 
 @Service
 public class SiteServiceImpl implements ISiteService {
@@ -82,6 +90,43 @@ public class SiteServiceImpl implements ISiteService {
 	@Override
 	public BackResponseBo backup(String bk_type, String bk_path, String fmt) throws Exception {
 		// TODO Auto-generated method stub
+		BackResponseBo backResponse = new BackResponseBo();
+		if(bk_type.equals("attach")) {
+			if(StringUtils.isBlank(bk_path)) {
+				throw new TipException("Please input the Directory for the files you want to backup");
+			}
+			if(!(new File(bk_path)).isDirectory()) {
+				throw new TipException("Please input a correct Directory");
+			}
+			String bkAttachDir = AttachController.CLASSPATH + "upload";
+			String bkThemesDir = AttachController.CLASSPATH + "templates/themes";
+			
+			String fname = DateKit.dateFormat(new Date(), fmt) + "_" + "001.zip";
+			
+			String attachPath = bk_path + "/" + "attachs_" + fname;
+            String themesPath = bk_path + "/" + "themes_" + fname;
+
+            ZipUtils.zipFolder(bkAttachDir, attachPath);
+            ZipUtils.zipFolder(bkThemesDir, themesPath);
+
+            backResponse.setAttachPath(attachPath);
+            backResponse.setThemePath(themesPath);
+
+		}
+		
+		if(bk_type.equals("db")) {
+			String bkAttachDir = AttachController.CLASSPATH + "upload/";
+			if(!(new File(bkAttachDir)).isDirectory()) {
+				File file = new File(bkAttachDir);
+				if(!file.exists())
+					file.mkdirs();
+			}
+		}
+		
+		String sqlFileName = "tale_" + DateKit.dateFormat(new Date(), fmt) + "_" + "001.sql";
+        String zipFile = sqlFileName.replace(".sql", ".zip");
+        
+        //Backup backup = new Ba
 		return null;
 	}
 

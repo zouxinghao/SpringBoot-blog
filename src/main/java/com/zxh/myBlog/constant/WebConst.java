@@ -34,4 +34,7 @@ public class WebConst {
 
 	public static final String SUCCESSFUL_RESULT = "SUCCESS";
 
+
+	public static final int MAX_FILE_SIZE = 10240;
+
 }

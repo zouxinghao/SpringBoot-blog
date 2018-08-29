@@ -56,4 +56,35 @@ public class UUID {
         // 返回字符串
         return new String(cs);
 	}
+
+
+	public static String UU32(java.util.UUID uu) {
+        StringBuilder sb = new StringBuilder();
+        long m = uu.getMostSignificantBits();
+        long l = uu.getLeastSignificantBits();
+        for (int i = 0; i < 13; i++) {
+            sb.append(_UU32[(int) (m >> ((13 - i - 1) * 5)) & 31]);
+        }
+        for (int i = 0; i < 13; i++) {
+            sb.append(_UU32[(int) (l >> ((13 - i - 1)) * 5) & 31]);
+        }
+        return sb.toString();
+    }
+
+    public static String UU32() {
+        return UU32(java.util.UUID.randomUUID());
+    }
+
+    public static java.util.UUID fromUU32(String u32) {
+        return new java.util.UUID(parseUnsignedLong(u32.substring(0, 13), 32),
+                        parseUnsignedLong(u32.substring(13), 32));
+    }
+
+    public static long parseUnsignedLong(String s, int radix) {
+        int len = s.length();
+        long first = Long.parseLong(s.substring(0, len - 1), radix);
+        int second = Character.digit(s.charAt(len - 1), radix);
+        return first * radix + second;
+    }
+
 }
