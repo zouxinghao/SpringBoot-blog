@@ -54,9 +54,9 @@ public class BaseInterceptor implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object o, ModelAndView m)
 			throws Exception {
 		// TODO Auto-generated method stub
-		OptionVo optionVo = optionService.getOptionByName("site_record");
+		OptionVo ov = optionService.getOptionByName("site_record");
 		request.setAttribute("commons", commons);//一些工具类和公共方法
-		request.setAttribute("option", optionVo);
+		request.setAttribute("option", ov);
 		request.setAttribute("adminCommons", adminCommons);
 		
 	}

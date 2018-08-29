@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.zxh.myBlog.constant.WebConst;
@@ -15,6 +16,7 @@ import com.zxh.myBlog.model.Vo.LogVoExample;
 import com.zxh.myBlog.service.ILogService;
 import com.zxh.myBlog.utils.DateKit;
 
+@Service
 public class LogServiceImpl implements ILogService{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LogServiceImpl.class);

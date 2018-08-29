@@ -2,10 +2,13 @@ package com.zxh.myBlog.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.zxh.myBlog.dto.MetaDto;
 import com.zxh.myBlog.model.Vo.MetaVo;
 import com.zxh.myBlog.service.IMetaService;
 
+@Service
 public class MetaServiceImpl implements IMetaService{
 
 	@Override

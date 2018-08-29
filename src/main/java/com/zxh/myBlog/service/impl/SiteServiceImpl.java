@@ -23,10 +23,12 @@ import com.zxh.myBlog.exception.TipException;
 import com.zxh.myBlog.model.Bo.ArchiveBo;
 import com.zxh.myBlog.model.Bo.BackResponseBo;
 import com.zxh.myBlog.model.Bo.StatisticsBo;
+import com.zxh.myBlog.model.Vo.AttachVoExample;
 import com.zxh.myBlog.model.Vo.CommentVo;
 import com.zxh.myBlog.model.Vo.CommentVoExample;
 import com.zxh.myBlog.model.Vo.ContentVo;
 import com.zxh.myBlog.model.Vo.ContentVoExample;
+import com.zxh.myBlog.model.Vo.MetaVoExample;
 import com.zxh.myBlog.service.ISiteService;
 import com.zxh.myBlog.utils.DateKit;
 import com.zxh.myBlog.utils.TaleUtils;
@@ -126,14 +128,34 @@ public class SiteServiceImpl implements ISiteService {
 		String sqlFileName = "tale_" + DateKit.dateFormat(new Date(), fmt) + "_" + "001.sql";
         String zipFile = sqlFileName.replace(".sql", ".zip");
         
-        //Backup backup = new Ba
+        // Backup backup = new Ba
 		return null;
 	}
 
 	@Override
 	public StatisticsBo getStatistics() {
 		// TODO Auto-generated method stub
-		return null;
+		LOGGER.info("GET Statics info ...");
+		StatisticsBo statisticsBo = new StatisticsBo();
+		
+		ContentVoExample contentVoExample = new ContentVoExample();
+		contentVoExample.createCriteria().andTypeEqualTo(Types.ARTICLE.getType()).andStatusEqualTo(Types.PUBLISH.getType());
+		Long articles = contentDao.countByExample(contentVoExample);
+		
+		Long comments = commentDao.countByExample(new CommentVoExample());
+		
+		Long attachs = attachDao.countByExample(new AttachVoExample());
+		
+		MetaVoExample metaVoExample = new MetaVoExample();
+		metaVoExample.createCriteria().andTypeEqualTo(Types.LINK.getType());
+		Long links = metaDao.countByExample(metaVoExample);
+		
+		statisticsBo.setArticles(articles);
+		statisticsBo.setComments(comments);
+		statisticsBo.setAttachs(attachs);
+		statisticsBo.setLinks(links);
+		LOGGER.debug("Exit getStatistics method");
+        return statisticsBo;
 	}
 
 	@Override

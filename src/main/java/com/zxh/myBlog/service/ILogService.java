@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.zxh.myBlog.model.Vo.LogVo;
 
+
 public interface ILogService {
 	/**
 	 * save the operation data

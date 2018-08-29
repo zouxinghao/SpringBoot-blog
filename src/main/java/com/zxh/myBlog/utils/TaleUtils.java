@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,6 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.commonmark.Extension;
+import org.commonmark.ext.gfm.tables.TablesExtension;
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -195,6 +201,39 @@ public class TaleUtils {
 			return prefix + "/" + UUID.UU32() + "." + (ext == null ? null : (ext));
 		}
 	}
+
+	/**
+     * markdown转换为html
+     *
+     * @param markdown
+     * @return
+     */
+    public static String mdToHtml(String markdown) {
+        if (StringUtils.isBlank(markdown)) {
+            return "";
+        }
+        java.util.List<Extension> extensions = Arrays.asList(TablesExtension.create());
+        Parser parser = Parser.builder().extensions(extensions).build();
+        Node document = parser.parse(markdown);
+        HtmlRenderer renderer = HtmlRenderer.builder().extensions(extensions).build();
+        String content = renderer.render(document);
+        content = Commons.emoji(content);
+        return content;
+    }
+
+    /**
+     * 提取html中的文字
+     *
+     * @param html
+     * @return
+     */
+    public static String htmlToText(String html) {
+        if (StringUtils.isNotBlank(html)) {
+            return html.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+        }
+        return "";
+    }
+
 	
 	
 }
