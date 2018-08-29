@@ -37,4 +37,7 @@ public class WebConst {
 
 	public static final int MAX_FILE_SIZE = 10240;
 
+
+	public static final int MAX_PAGE = 20;
+
 }

@@ -171,6 +171,11 @@ public final class Commons {
     public static String permalink(Integer cid, String slug) {
         return site_url("/article/" + (StringUtils.isNotBlank(slug) ? slug : cid.toString()));
     }
+    
+    public static String permalink(ContentVo contents) {
+        return permalink(contents.getCid(), contents.getSlug());
+    }
+
 
     /**
      * 获取随机数
