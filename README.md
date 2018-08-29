@@ -39,3 +39,16 @@ __3. Debug for docker function__
 **Note**
 1. ➖ remove JUnit to solve confliection (see development log): JUnit will use logback, while SLF4J will also use it, which cause the confliection, see [reference](https://github.com/spring-projects/spring-boot/issues/4341). I will revert it back once I figure out how to solve the confliction. 
 2. AES/MD5 with salt
+
+# 08/27/2018
+__1. add UUID for user (update on 08/29/2018: also for attach)
+
+# 08/28/2018
+__1. 
+
+# 08/29/2018
+__1. add WebMvcConfig.java, which is a extend class of WebMvcConfigurerAdapter, and will allow you to add customize function. And the addResourceHandlers function can help load static resource.__
+
+__2. (pending) Try to add backup function, find that it is too complicated, so I will skip it for now.__ 
+
+__3. update site function
