@@ -86,6 +86,13 @@ public class AuthController extends BaseController{
 			}
 			return RestResponseBo.fail();
 		}
+		try {
+			response.sendRedirect("/admin");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			LOGGER.error("Logout fail", e);
+		}
 		return RestResponseBo.ok();
 	}
 	

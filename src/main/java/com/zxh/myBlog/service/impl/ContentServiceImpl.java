@@ -42,6 +42,7 @@ public class ContentServiceImpl implements IContentService {
 	
 	
 	@Override
+	@Transactional
 	public String publish(ContentVo contentVo) {
 		// TODO Auto-generated method stub
 		if(contentVo == null) {
