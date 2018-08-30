@@ -162,3 +162,27 @@
 2018-08-30 21:18:50.810 [http-nio-8080-exec-10] DEBUG com.zxh.myBlog.service.impl.LogServiceImpl - Enter getLogs method:page=1,linit=5
 2018-08-30 21:18:51.467 [http-nio-8080-exec-10] DEBUG com.zxh.myBlog.service.impl.LogServiceImpl - Exit getLogs method
 2018-08-30 21:18:51.467 [http-nio-8080-exec-10] INFO  com.zxh.myBlog.controller.admin.IndexController - Exit admin index method
+2018-08-30 21:36:14.093 [http-nio-8080-exec-1] DEBUG com.zxh.myBlog.service.impl.ContentServiceImpl - Enter getContents Method ...
+2018-08-30 21:36:14.986 [http-nio-8080-exec-1] DEBUG com.zxh.myBlog.service.impl.ContentServiceImpl - Exit getContents method
+2018-08-30 21:36:34.894 [http-nio-8080-exec-1] INFO  com.zxh.myBlog.controller.admin.IndexController - Enter admin index ...
+2018-08-30 21:36:34.894 [http-nio-8080-exec-1] DEBUG com.zxh.myBlog.service.impl.SiteServiceImpl - Enter recentComments method:limit=5
+2018-08-30 21:36:35.331 [http-nio-8080-exec-1] DEBUG com.zxh.myBlog.service.impl.SiteServiceImpl - Exit recentComments method
+2018-08-30 21:36:35.332 [http-nio-8080-exec-1] DEBUG com.zxh.myBlog.service.impl.SiteServiceImpl - Enter recentContents method:limit=5
+2018-08-30 21:36:35.953 [http-nio-8080-exec-1] DEBUG com.zxh.myBlog.service.impl.SiteServiceImpl - Exit recentContents method
+2018-08-30 21:36:35.953 [http-nio-8080-exec-1] INFO  com.zxh.myBlog.service.impl.SiteServiceImpl - GET Statics info ...
+2018-08-30 21:36:37.328 [http-nio-8080-exec-1] DEBUG com.zxh.myBlog.service.impl.SiteServiceImpl - Exit getStatistics method
+2018-08-30 21:36:37.328 [http-nio-8080-exec-1] DEBUG com.zxh.myBlog.service.impl.LogServiceImpl - Enter getLogs method:page=1,linit=5
+2018-08-30 21:36:37.991 [http-nio-8080-exec-1] DEBUG com.zxh.myBlog.service.impl.LogServiceImpl - Exit getLogs method
+2018-08-30 21:36:37.992 [http-nio-8080-exec-1] INFO  com.zxh.myBlog.controller.admin.IndexController - Exit admin index method
+2018-08-30 21:38:31.144 [http-nio-8080-exec-6] DEBUG com.zxh.myBlog.service.impl.ContentServiceImpl - Enter getContents Method ...
+2018-08-30 21:38:31.753 [http-nio-8080-exec-6] DEBUG com.zxh.myBlog.service.impl.ContentServiceImpl - Exit getContents method
+2018-08-30 21:39:31.136 [http-nio-8080-exec-5] INFO  com.zxh.myBlog.controller.admin.IndexController - Enter admin index ...
+2018-08-30 21:39:31.136 [http-nio-8080-exec-5] DEBUG com.zxh.myBlog.service.impl.SiteServiceImpl - Enter recentComments method:limit=5
+2018-08-30 21:39:31.437 [http-nio-8080-exec-5] DEBUG com.zxh.myBlog.service.impl.SiteServiceImpl - Exit recentComments method
+2018-08-30 21:39:31.437 [http-nio-8080-exec-5] DEBUG com.zxh.myBlog.service.impl.SiteServiceImpl - Enter recentContents method:limit=5
+2018-08-30 21:39:32.049 [http-nio-8080-exec-5] DEBUG com.zxh.myBlog.service.impl.SiteServiceImpl - Exit recentContents method
+2018-08-30 21:39:32.049 [http-nio-8080-exec-5] INFO  com.zxh.myBlog.service.impl.SiteServiceImpl - GET Statics info ...
+2018-08-30 21:39:33.227 [http-nio-8080-exec-5] DEBUG com.zxh.myBlog.service.impl.SiteServiceImpl - Exit getStatistics method
+2018-08-30 21:39:33.227 [http-nio-8080-exec-5] DEBUG com.zxh.myBlog.service.impl.LogServiceImpl - Enter getLogs method:page=1,linit=5
+2018-08-30 21:39:33.866 [http-nio-8080-exec-5] DEBUG com.zxh.myBlog.service.impl.LogServiceImpl - Exit getLogs method
+2018-08-30 21:39:33.866 [http-nio-8080-exec-5] INFO  com.zxh.myBlog.controller.admin.IndexController - Exit admin index method
