@@ -23,7 +23,7 @@ public class WebConst {
     public static final String USER_IN_COOKIE = "S_L_ID";
 
 
-	public static final int MAX_POSTS = 10;
+	public static final int MAX_POSTS = 9999;
 
 
 	public static final int MAX_TITLE_COUNT = 200;
@@ -35,9 +35,13 @@ public class WebConst {
 	public static final String SUCCESSFUL_RESULT = "SUCCESS";
 
 
-	public static final int MAX_FILE_SIZE = 10240;
+	public static final int MAX_FILE_SIZE = 1048576;
 
 
 	public static final int MAX_PAGE = 20;
 
+
+	public static final Integer HIT_EXCEED = 10;
+
+	public static Integer HITS_LIMIT_TIME = 7200;
 }
