@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.zxh.myBlog.model.Vo.UserVo;
 import com.zxh.myBlog.utils.MapCache;
+import com.zxh.myBlog.utils.TaleUtils;
 
 public abstract class BaseController {
 	public static String THEME = "themes/default";
@@ -30,7 +31,7 @@ public abstract class BaseController {
 	}
 	
 	public UserVo user(HttpServletRequest request) {
-		return this.user(request);
+		return TaleUtils.getLoginUser(request);
 	}
 	
 	 public Integer getUid(HttpServletRequest request){
