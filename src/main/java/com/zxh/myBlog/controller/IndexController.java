@@ -269,7 +269,7 @@ public class IndexController extends BaseController {
         return this.render("archives");
     }
     
-    @PostMapping(value = "search/{keyword}")
+    @GetMapping(value = "search/{keyword}")
     public String search(HttpServletRequest request, @PathVariable String keyword, @RequestParam(value = "limit", defaultValue = "12") int limit) {
     	return this.search(request, keyword, 1, limit);
     }
