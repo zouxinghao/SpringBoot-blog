@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageInfo;
 import com.vdurmont.emoji.EmojiParser;
 import com.zxh.myBlog.constant.WebConst;
+import com.zxh.myBlog.controller.admin.AttachController;
 import com.zxh.myBlog.dto.MetaDto;
 import com.zxh.myBlog.dto.Types;
 import com.zxh.myBlog.model.Bo.ArchiveBo;
@@ -267,6 +269,25 @@ public class IndexController extends BaseController {
         List<ArchiveBo> archives = siteService.getArchives();
         request.setAttribute("archives", archives);
         return this.render("archives");
+    }
+    
+    /**
+     * 友链页
+     *
+     * @return
+     */
+    //@GetMapping(value = "links")
+    //public String links(HttpServletRequest request) {
+    //    List<MetaVo> links = metaService.getMetas(Types.LINK.getType());
+    //    request.setAttribute("links", links);
+    //    return this.render("links");
+    //}
+    
+    @GetMapping(value = "links", produces = "application/pdf")
+    @ResponseBody
+    public FileSystemResource links() {
+    	String path = AttachController.CLASSPATH;
+    	return new FileSystemResource(path + "Resume.pdf");
     }
     
     @GetMapping(value = "search/{keyword}")

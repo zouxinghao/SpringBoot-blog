@@ -82,8 +82,8 @@ public class ArticleController extends BaseController{
 			content.setCategories("Oopse");
 		}
 		String result = contentService.publish(content);
-		if(result == WebConst.SUCCESSFUL_RESULT) {
-			return RestResponseBo.ok();
+		if(!result.equals(WebConst.SUCCESSFUL_RESULT)) {
+			return RestResponseBo.fail(result);
 		}
 		return RestResponseBo.ok();
 	}

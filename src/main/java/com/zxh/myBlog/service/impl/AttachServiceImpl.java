@@ -41,12 +41,12 @@ public class AttachServiceImpl implements IAttachService{
 	public void save(String fname, String fkey, String ftype, Integer author) {
 		// TODO Auto-generated method stub
 		AttachVo attach = new AttachVo();
-		attach.setFname(fname);
-		attach.setFkey(fkey);
-		attach.setFtype(ftype);
-		attach.setAuthorId(author);
-		attach.setCreated(DateKit.getCurrentUnixTime());
-		attachDao.insertSelective(attach);
+        attach.setFname(fname);
+        attach.setAuthorId(author);
+        attach.setFkey(fkey);
+        attach.setFtype(ftype);
+        attach.setCreated(DateKit.getCurrentUnixTime());
+        attachDao.insertSelective(attach);
 	}
 
 	@Override
