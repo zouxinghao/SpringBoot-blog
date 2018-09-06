@@ -1,6 +1,6 @@
 # SpringBoot-blog
 A blogging system developed by springboot / mybatis / thymeleaf
-
+[![Build Status](https://travis-ci.com/zouxinghao/SpringBoot-blog.svg?branch=master)](https://travis-ci.com/zouxinghao/SpringBoot-blog)
 
 # TODO 
 - [ ] Currently, I used map for cache, and set size of 800, it is unsafe. Replacing it by redis may help.
@@ -40,15 +40,19 @@ __3. Debug for docker function__
 1. ➖ remove JUnit to solve confliection (see development log): JUnit will use logback, while SLF4J will also use it, which cause the confliection, see [reference](https://github.com/spring-projects/spring-boot/issues/4341). I will revert it back once I figure out how to solve the confliction. 
 2. AES/MD5 with salt
 
-# 08/27/2018
-__1. add UUID for user (update on 08/29/2018: also for attach)
+## 08/27/2018
+__1. add UUID for user (update on 08/29/2018: also for attach)__
 
-# 08/28/2018
-__1. 
+## 08/28/2018
+__1. __
 
-# 08/29/2018
+## 08/29/2018
 __1. add WebMvcConfig.java, which is a extend class of WebMvcConfigurerAdapter, and will allow you to add customize function. And the addResourceHandlers function can help load static resource.__
 
 __2. (pending) Try to add backup function, find that it is too complicated, so I will skip it for now.__ 
 
-__3. update site function
+__3. update site function__
+
+## 9/6/2018
+__1. Transfer from Jenkins to Travis CI due to the limit of RAM. Integrate the test code
+
