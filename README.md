@@ -1,11 +1,16 @@
 # SpringBoot-blog
 A blogging system developed by springboot / mybatis / thymeleaf
+
 [![Build Status](https://travis-ci.com/zouxinghao/SpringBoot-blog.svg?branch=master)](https://travis-ci.com/zouxinghao/SpringBoot-blog)
 
+My blog with this project: http://xzou.me/
+
+
 # TODO 
-- [ ] Currently, I used map for cache, and set size of 800, it is unsafe. Replacing it by redis may help.
-- [ ] Currently, I used cookie. The other method like OAuth may be more funtional.
-- [ ] slove the confliction of logback
+- [X] Currently, I used map for cache, and set size of 800, it is unsafe. Replacing it by redis may help.
+- [ ] New: add "notebook" function, add more feasible PDF/Micrsoft docs reader, link [project](https://github.com/zouxinghao/Web-Online-Preview-File)
+- [ ] Currently, I used cookie. I want to add Oauth for more functions.
+- [X] slove the confliction of logback with JUnit 5.
 
 # Development log
 ## 08/23/2018
@@ -44,15 +49,16 @@ __3. Debug for docker function__
 __1. add UUID for user (update on 08/29/2018: also for attach)__
 
 ## 08/28/2018
-__1. __
 
 ## 08/29/2018
 __1. add WebMvcConfig.java, which is a extend class of WebMvcConfigurerAdapter, and will allow you to add customize function. And the addResourceHandlers function can help load static resource.__
 
-__2. (pending) Try to add backup function, find that it is too complicated, so I will skip it for now.__ 
+__2. (pending) Try to add backup function, find that it is too complicated, so I will skip it for now. (update: finish this function in 09/11/2018)__ 
 
 __3. update site function__
 
 ## 9/6/2018
-__1. Transfer from Jenkins to Travis CI due to the limit of RAM. Integrate the test code
+__1. Transfer from Jenkins to Travis CI due to the limit of RAM. Integrate the test code__
 
+## 9/14/2018
+__1. add self-deployment with support of Travis CI__
