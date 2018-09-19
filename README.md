@@ -71,3 +71,6 @@ __1. Transfer from Jenkins to Travis CI due to the limit of RAM. Integrate the t
 
 ## 9/14/2018
 __1. add self-deployment with support of Travis CI__
+
+## 9/19/2018
+__add docker method to package and start-up the project__
