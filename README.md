@@ -5,6 +5,15 @@ A blogging system developed by springboot / mybatis / thymeleaf
 
 My blog with this project: http://xzou.me/
 
+# Usage
+## Quick Start:
+
+*update*: you can also use the `runningTools` as `runningTools.sh start` to start the blog service. 
+
+1. make sure you install mysql, jave and maven on your computers.
+2. set up mysql service, you can also use docker with the code in "docker-support"
+3. use `mvn build ...` and `java -jar ...` command to start the blog project
+
 
 # TODO 
 - [X] Currently, I used map for cache, and set size of 800, it is unsafe. Replacing it by redis may help.
