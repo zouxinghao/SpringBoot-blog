@@ -23,7 +23,7 @@
         <junit.platform.version>1.0.2</junit.platform.version>
 		<junit.jupiter.version>5.0.2</junit.jupiter.version>
 		<junit.vintage.version>4.12.2</junit.vintage.version>
-		
+		<docker.plugin.version>0.3.258</docker.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -173,5 +173,39 @@
     </build>
     <!-- 普通的maven打包方式 -->
     
+     <!-- 结合docker的maven打包方式,并上传提交创建的镜像 -->
+    <!--<build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <dockerDirectory>${project.basedir}/docker-extension/my-blog</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>-->
+    <!-- 结合docker的maven打包方式,并上传提交创建的镜像 -->
  
 </project>
