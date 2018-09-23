@@ -21,6 +21,14 @@ My blog with this project: http://xzou.me/
 - [ ] Currently, I used cookie. I want to add Oauth for more functions.
 - [X] slove the confliction of logback with JUnit 5.
 
+# Display
+## Article Page
+![image](https://github.com/zouxinghao/SpringBoot-blog/raw/master/img/page.png)
+## Backup
+![image](https://github.com/zouxinghao/SpringBoot-blog/raw/master/img/backup.png)
+There are manually backup bottom for databases and web files backup. 
+Besides, there are crontab script running on my server, it will backup the database docker once a day. Check [here](https://github.com/zouxinghao/daily-toolset/blob/master/Docker/mysql/backup/backup.sh)
+
 # Development log
 ## 08/23/2018
 __Design and create database with mySQL, add docker support__
